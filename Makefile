@@ -1,5 +1,6 @@
 compile: clean ; mkdir -p ./target/classes ; javac -d ./target/classes ./src/main/java/games/Slot.java
-run: ; java -cp ./target/classes games.Slot
+run: ; java -jar ./target/casino.jar
 clean: ; rm -rf ./target
-compile-run: compile run
-.DEFAULT_GOAL := compile-run
+build-run: build run
+.DEFAULT_GOAL := build-run
+build: compile ; jar cfe ./target/casino.jar games.Slot -C ./target/classes .
