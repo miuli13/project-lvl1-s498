@@ -1,7 +1,6 @@
-compile: clean ; mkdir -p ./target/classes ; javac -d ./target/classes ./src/main/java/games/Slot.java
-run: ; java -jar ./target/casino.jar
+run: ; java -jar ./target/casino-1.0-SNAPSHOT-jar-with-dependencies.jar
 clean: ; rm -rf ./target
 build-run: build run
 .DEFAULT_GOAL := build-run
-build: compile ; jar cfe ./target/casino.jar games.Slot -C ./target/classes .
+build: ; ./mvnw clean package
 update: ; ./mvnw versions:display-plugin-updates ; ./mvnw versions:update-properties
