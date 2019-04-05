@@ -5,7 +5,7 @@ import static java.lang.StrictMath.round;
 
 public class Slot {
 
-    public static void main(String... __) {
+    public static void main() {
         int initialRate = 100;
         int rate = 10;
         int prize = 1000;
