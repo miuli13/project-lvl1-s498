@@ -5,7 +5,7 @@ import static java.lang.StrictMath.round;
 
 public class Slot {
 
-    public static void main() {
+    static void main() {
         int initialRate = 100;
         int rate = 10;
         int prize = 1000;
@@ -20,11 +20,11 @@ public class Slot {
         while (initialRate > 0) {
             int temp = initialRate;
             initialRate -= rate;
-            firstCounter = (firstCounter + (int) round(random() * 100)) % size;
-            secondCounter = (secondCounter + (int) round(random() * 100)) % size;
-            thirdCounter = (thirdCounter + (int) round(random() * 100)) % size;
+            firstCounter = (firstCounter + gain) % size;
+            secondCounter = (secondCounter + gain) % size;
+            thirdCounter = (thirdCounter + gain) % size;
             if (firstCounter == secondCounter && firstCounter == thirdCounter) {
-                temp += 1000;
+                temp += prize;
                 System.out.printf("У Вас %d$, ставка - %d$\n"+
                                 "Крутим барабаны !Розыгрыш принёс следующие результаты:\n"+
                                 "первый барабан - %d, второй - %d, третий - %d\n"+
