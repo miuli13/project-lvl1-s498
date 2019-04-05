@@ -1,9 +1,8 @@
 package games;
 
 import static java.lang.Math.random;
-import static java.lang.StrictMath.round;
 
-public class Slot {
+class Slot {
 
     static void main() {
         int initialRate = 100;
@@ -15,31 +14,26 @@ public class Slot {
         int thirdCounter = 0;
         int size = 7;
 
-        int gain = (int) Math.round(random() * 100);
-
         while (initialRate > 0) {
             int temp = initialRate;
             initialRate -= rate;
-            firstCounter = (firstCounter + gain) % size;
-            secondCounter = (secondCounter + gain) % size;
-            thirdCounter = (thirdCounter + gain) % size;
+            firstCounter = (firstCounter + (int) Math.round(random() * 100)) % size;
+            secondCounter = (secondCounter + (int) Math.round(random() * 100)) % size;
+            thirdCounter = (thirdCounter + (int) Math.round(random() * 100)) % size;
             if (firstCounter == secondCounter && firstCounter == thirdCounter) {
-                temp += prize;
+                initialRate += prize;
                 System.out.printf("У Вас %d$, ставка - %d$\n"+
                                 "Крутим барабаны !Розыгрыш принёс следующие результаты:\n"+
                                 "первый барабан - %d, второй - %d, третий - %d\n"+
                                 "Выигрыш % d$, ваш капитал теперь составляет: %d$\n ",
-                        initialRate, rate, firstCounter, secondCounter, thirdCounter, rate, temp);
+                        temp, rate, firstCounter, secondCounter, thirdCounter, rate, initialRate);
             } else {
-                temp -= rate;
                 System.out.printf("У Вас %d$, ставка - %d$\n"+
                         "Крутим барабаны !Розыгрыш принёс следующие результаты:\n"+
                         "первый барабан - %d, второй - %d, третий - %d\n"+
                         "Проигрыш % d$, ваш капитал теперь составляет: %d$\n ",
-                        initialRate, rate, firstCounter, secondCounter, thirdCounter, rate, temp);
+                        temp, rate, firstCounter, secondCounter, thirdCounter, rate, initialRate);
             }
-            initialRate = temp;
-            firstCounter = secondCounter = thirdCounter = 0;
         }
 
 
