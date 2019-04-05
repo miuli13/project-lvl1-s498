@@ -1,2 +1,6 @@
 /target
 pom.xml.versionsBackup
+/.idea
+/mvnw.cmd
+/.mvn/
+/mvnw
