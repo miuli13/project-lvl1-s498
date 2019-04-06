@@ -1,8 +1,12 @@
 package games;
 
+import org.slf4j.Logger;
+
 import static java.lang.Math.random;
 
 class Slot {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Slot.class);
 
     static void main() {
         int initialRate = 100;
@@ -22,17 +26,15 @@ class Slot {
             thirdCounter = (thirdCounter + (int) Math.round(random() * 100)) % size;
             if (firstCounter == secondCounter && firstCounter == thirdCounter) {
                 initialRate += prize;
-                System.out.printf("У Вас %d$, ставка - %d$\n"+
-                                "Крутим барабаны !Розыгрыш принёс следующие результаты:\n"+
-                                "первый барабан - %d, второй - %d, третий - %d\n"+
-                                "Выигрыш % d$, ваш капитал теперь составляет: %d$\n ",
-                        temp, rate, firstCounter, secondCounter, thirdCounter, rate, initialRate);
+                log.info("У Вас " + temp + "$, ставка - " + rate + "$\n" +
+                        "Крутим барабаны !Розыгрыш принёс следующие результаты:\n" +
+                        "первый барабан - " + firstCounter + ", второй - " + secondCounter + ", третий - " + thirdCounter + "\n" +
+                        "Выигрыш " + rate + "$, ваш капитал теперь составляет: " + initialRate + "$\n ");
             } else {
-                System.out.printf("У Вас %d$, ставка - %d$\n"+
-                        "Крутим барабаны !Розыгрыш принёс следующие результаты:\n"+
-                        "первый барабан - %d, второй - %d, третий - %d\n"+
-                        "Проигрыш % d$, ваш капитал теперь составляет: %d$\n ",
-                        temp, rate, firstCounter, secondCounter, thirdCounter, rate, initialRate);
+                log.info("У Вас " + temp + "$, ставка - " + rate + "$\n" +
+                        "Крутим барабаны !Розыгрыш принёс следующие результаты:\n" +
+                        "первый барабан - " + firstCounter + ", второй - " + secondCounter + ", третий - " + thirdCounter + "\n" +
+                        "Проигрыш " + rate + ", ваш капитал теперь составляет: " + initialRate + "$\n ");
             }
         }
 
