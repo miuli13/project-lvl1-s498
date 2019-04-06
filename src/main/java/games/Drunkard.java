@@ -1,7 +1,6 @@
 package games;
 
-import static games.Utils.*;
-import static org.apache.commons.math3.util.MathArrays.shuffle;
+import static games.CardUtils.*;
 
 class Drunkard {
 
@@ -11,7 +10,9 @@ class Drunkard {
     private static int[] playersCardHeads = new int[2];
 
     static void main() {
-        dealCards();
+        int[] cards = getShuffledCards();
+        System.arraycopy(cards, 0, playersCards[0], 0, 18);
+        System.arraycopy(cards, 18, playersCards[1], 0, 18);
         boolean result = true;
         int winner = 0;
         int sumIterations = 0;
@@ -41,7 +42,7 @@ class Drunkard {
     private static int resolveWinner() {
         int num = getCard(0) % PARS_TOTAL_COUNT;
         int num2 = getCard(1) % PARS_TOTAL_COUNT;
-        System.out.printf("Игрок №1 карта: %s; игрок №2 карта: %s.\n", Utils.toString(num), Utils.toString(num2));
+        System.out.printf("Игрок №1 карта: %s; игрок №2 карта: %s.\n", CardUtils.toString(num), CardUtils.toString(num2));
         if (num2 > num) {
             if ((num == 0) && (num2 == 8)) {
                 addCard(0, num);
@@ -93,20 +94,13 @@ class Drunkard {
         playersCardHeads[playerIndex] = incrementIndex(playersCardHeads[playerIndex]);
     }
 
-    private static void dealCards() {
-        int[] cards = new int[CARDS_TOTAL_COUNT];
-        for (int i = 0; i < CARDS_TOTAL_COUNT; i++) {
-            cards[i] = i;
-        }
-        shuffle(cards);
-        System.arraycopy(cards, 0, playersCards[0], 0, 18);
-        System.arraycopy(cards, 18, playersCards[1], 0, 18);
-
-    }
-
     private static boolean playerCardsIsEmpty(int playerIndex) {
         int tail = playersCardTails[playerIndex];
         int head = playersCardHeads[playerIndex];
         return tail == head;
+    }
+
+    private static int incrementIndex(int i) {
+        return (i + 1) % CARDS_TOTAL_COUNT;
     }
 }
