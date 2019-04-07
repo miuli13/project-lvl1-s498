@@ -92,7 +92,6 @@ class BlackJack {
     }
 
     private static int addCard2Player(int player) {
-        // todo: реализуйте!
         int card = cards[cursor];
         playersCards[player][playersCursors[player]] = card;
         cursor++;
