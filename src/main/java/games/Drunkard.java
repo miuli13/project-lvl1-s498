@@ -45,30 +45,18 @@ class Drunkard {
         int num = getCard(0) % PARS_TOTAL_COUNT;
         int num2 = getCard(1) % PARS_TOTAL_COUNT;
         log.info("Игрок №1 карта: {}; игрок №2 карта: {}.", CardUtils.toString(num), CardUtils.toString(num2));
-        if (num2 > num) {
-            if ((num == 0) && (num2 == 8)) {
-                addCard(0, num);
-                addCard(0, num2);
-                log.info("Выиграл игрок 1!");
-                return 1;
-            } else {
-                addCard(1, num);
-                addCard(1, num2);
-                log.info("Выиграл игрок 2!");
-                return -1;
-            }
-        } else if (num2 < num) {
-            if ((num == 8) && (num2 == 0)) {
-                addCard(1, num);
-                addCard(1, num2);
-                log.info("Выиграл игрок 2!");
-                return -1;
-            } else {
-                addCard(0, num);
-                addCard(0, num2);
-                log.info("Выиграл игрок 1!");
-                return 1;
-            }
+        if ((num > num2 && (num != 8 && num2 != 0)) ||
+                (num == 0 && num2 == 8)) {
+            addCard(0, num);
+            addCard(0, num2);
+            log.info("Выиграл игрок 1!");
+            return 1;
+        } else if (num < num2 ||
+                (num == 8 && num2 == 0)) {
+            addCard(1, num);
+            addCard(1, num2);
+            log.info("Выиграл игрок 2!");
+            return -1;
         } else {
             addCard(0, num);
             addCard(1, num2);
