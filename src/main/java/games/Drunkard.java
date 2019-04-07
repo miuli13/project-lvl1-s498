@@ -23,20 +23,20 @@ class Drunkard {
         while (result) {
             sumIterations++;
             if (sumIterations == 1) for (int i = 0; i < 2; i++) playersCardHeads[i] = CARDS_TOTAL_COUNT / 2;
-            log.info("Итерация " + sumIterations);
+            log.info("Итерация {}", sumIterations);
             winner += resolveWinner();
             if (playerCardsIsEmpty(0) || playerCardsIsEmpty(1)) {
                 result = false;
                 continue;
             }
-            log.info("У игрока №1 " + countCards(0) + " карт, у игрока №2 " + countCards(1) + " карт\n");
+            log.info("У игрока №1 {} карт, у игрока №2 {} карт", countCards(0), countCards(1));
         }
         if (winner > 0) {
-            log.info("У игрока №1 36 карт, у игрока №2 " + countCards(1) + " карт\n");
-            log.info("Выиграл первый игрок! Количество произведённых итераций: " + sumIterations + ".");
+            log.info("У игрока №1 36 карт, у игрока №2 {} карт", countCards(1));
+            log.info("Выиграл первый игрок! Количество произведённых итераций: {}.", sumIterations);
         } else {
-            log.info("У игрока №1 " + countCards(0) + " карт, у игрока №2 36 карт\n");
-            log.info("Выиграл второй игрок! Количество произведённых итераций: " + sumIterations + ".");
+            log.info("У игрока №1 " + countCards(0) + " карт, у игрока №2 36 карт");
+            log.info("Выиграл второй игрок! Количество произведённых итераций: {}.", sumIterations);
         }
 
     }
@@ -44,7 +44,7 @@ class Drunkard {
     private static int resolveWinner() {
         int num = getCard(0) % PARS_TOTAL_COUNT;
         int num2 = getCard(1) % PARS_TOTAL_COUNT;
-        log.info("Игрок №1 карта: " + CardUtils.toString(num) + "; игрок №2 карта: " + CardUtils.toString(num2) + ".\n");
+        log.info("Игрок №1 карта: {}; игрок №2 карта: {}.", CardUtils.toString(num), CardUtils.toString(num2));
         if (num2 > num) {
             if ((num == 0) && (num2 == 8)) {
                 addCard(0, num);

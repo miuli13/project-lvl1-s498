@@ -26,15 +26,17 @@ class Slot {
             thirdCounter = (thirdCounter + (int) Math.round(random() * 100)) % size;
             if (firstCounter == secondCounter && firstCounter == thirdCounter) {
                 initialRate += prize;
-                log.info("У Вас " + temp + "$, ставка - " + rate + "$\n" +
-                        "Крутим барабаны !Розыгрыш принёс следующие результаты:\n" +
-                        "первый барабан - " + firstCounter + ", второй - " + secondCounter + ", третий - " + thirdCounter + "\n" +
-                        "Выигрыш " + rate + "$, ваш капитал теперь составляет: " + initialRate + "$\n ");
+                log.info("У Вас {}$, ставка - {}$ \n" +
+                                "Крутим барабаны !Розыгрыш принёс следующие результаты: \n" +
+                                "первый барабан - {}, второй - {}, третий - {} \n" +
+                                "Выигрыш {}$, ваш капитал теперь составляет: {}$",
+                        temp, rate, firstCounter, secondCounter, thirdCounter, rate, initialRate);
             } else {
-                log.info("У Вас " + temp + "$, ставка - " + rate + "$\n" +
+                log.info("У Вас {}$, ставка - {}$\n" +
                         "Крутим барабаны !Розыгрыш принёс следующие результаты:\n" +
-                        "первый барабан - " + firstCounter + ", второй - " + secondCounter + ", третий - " + thirdCounter + "\n" +
-                        "Проигрыш " + rate + ", ваш капитал теперь составляет: " + initialRate + "$\n ");
+                        "первый барабан - {}, второй - {}, третий - {}\n" +
+                        "Проигрыш {}, ваш капитал теперь составляет: {}$",
+                        temp, rate, firstCounter, secondCounter, thirdCounter, rate, initialRate);
             }
         }
 

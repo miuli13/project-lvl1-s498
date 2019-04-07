@@ -10,7 +10,7 @@ public class Choice {
     // остальной код класса
 
     public static void main(String... __) throws IOException {
-        log.info("Выберите игру:\n1 - \"однорукий бандит\", 2 - \"пьяница\", 3 - \"очко\"");
+        log.info("Выберите игру:1 - \"однорукий бандит\", 2 - \"пьяница\", 3 - \"очко\"");
         switch (getCharacterFromUser()) {
             case '1':
                 Slot.main();

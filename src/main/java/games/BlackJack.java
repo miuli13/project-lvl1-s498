@@ -24,17 +24,17 @@ class BlackJack {
             initRound();
             int humanPoints = givingCards(0);
             int computerPoints = givingCards(1);
-            log.info("Сумма ваших очков -" + humanPoints + ", компьютера - " + computerPoints + "\n");
+            log.info("Сумма ваших очков -{}, компьютера - {}", humanPoints, computerPoints);
             if (humanPoints > computerPoints) {
                 playersMoney[0] += 10;
                 playersMoney[1] -= 10;
-                log.info("Вы выиграли раунд! Получаете 10$\n");
+                log.info("Вы выиграли раунд! Получаете 10$");
             } else if (computerPoints > humanPoints) {
                 playersMoney[0] -= 10;
                 playersMoney[1] += 10;
-                log.info("Вы проиграли раунд! Теряете 10$\n");
+                log.info("Вы проиграли раунд! Теряете 10$");
             } else {
-                log.info("Ничья!\n");
+                log.info("Ничья!");
             }
         }
 
@@ -60,17 +60,17 @@ class BlackJack {
     private static int givingCards(int player) throws IOException {
         if (player == 0) {
             for (int i = 0; i < 2; i++) {
-                log.info("Вам выпала карта " + CardUtils.toString(addCard2Player(player)) + "\n");
+                log.info("Вам выпала карта {}", CardUtils.toString(addCard2Player(player)));
             }
             while (confirm("Берём еще?") && sum(player) < MAX_VALUE - 1) {
-                log.info("Вам выпала карта " + CardUtils.toString(addCard2Player(player)) + "\n");
+                log.info("Вам выпала карта {}", CardUtils.toString(addCard2Player(player)));
             }
         } else {
             for (int i = 0; i < 2; i++) {
-                log.info("Компьютеру выпала карта " + CardUtils.toString(addCard2Player(player)) + "\n");
+                log.info("Компьютеру выпала карта {}", CardUtils.toString(addCard2Player(player)));
             }
             while (sum(player) < MAX_VALUE - 4) {
-                log.info("Компьютер решил взять ещё и ему выпала карта " + CardUtils.toString(addCard2Player(player)) + "\n");
+                log.info("Компьютер решил взять ещё и ему выпала карта {}", CardUtils.toString(addCard2Player(player)));
             }
         }
         return getFinalSum(player);
@@ -101,7 +101,7 @@ class BlackJack {
     }
 
     private static void initRound() {
-        log.info("\nУ Вас " + playersMoney[0] + "$, у компьютера - " + playersMoney[1] + "$. Начинаем новый раунд!");
+        log.info("У Вас {}$, у компьютера - {}$. Начинаем новый раунд!", playersMoney[0], playersMoney[1]);
         cards = getShuffledCards();
         playersCards = new int[2][MAX_CARDS_COUNT];
         playersCursors = new int[]{0, 0};
