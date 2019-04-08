@@ -58,26 +58,24 @@ class BlackJack {
     }
 
     private static int givingCards(int player) throws IOException {
+        int times = 0;
         if (player == 0) {
-            for (int i = 0; i < 2; i++) {
+            while (times < 2 || confirm("Берём еще?") && sum(player) < MAX_VALUE - 1) {
                 log.info("Вам выпала карта {}", CardUtils.toString(addCard2Player(player)));
-            }
-            while (confirm("Берём еще?") && sum(player) < MAX_VALUE - 1) {
-                log.info("Вам выпала карта {}", CardUtils.toString(addCard2Player(player)));
+                times++;
             }
         } else {
-            for (int i = 0; i < 2; i++) {
-                log.info("Компьютеру выпала карта {}", CardUtils.toString(addCard2Player(player)));
-            }
             while (sum(player) < MAX_VALUE - 4) {
-                log.info("Компьютер решил взять ещё и ему выпала карта {}", CardUtils.toString(addCard2Player(player)));
+                log.info((times < 2) ? "Компьютеру выпала карта {}" : "Компьютер решил взять ещё и ему выпала карта {}",
+                        CardUtils.toString(addCard2Player(player)));
+                times++;
             }
         }
         return getFinalSum(player);
     }
 
     private static boolean confirm(String message) throws IOException {
-        log.info(message + " \"Y\" - Да, {любой другой символ} - нет (Что бы выйти из игры, нажмите Ctrl + C)");
+        log.info(message + " \"Y\" - Да, {любой другой символ} - нет (Чтобы выйти из игры, нажмите Ctrl + C)");
         switch (Choice.getCharacterFromUser()) {
             case 'Y':
             case 'y':
